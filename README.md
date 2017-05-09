@@ -1,0 +1,2 @@
+# stacks
+Docker stacks repo
