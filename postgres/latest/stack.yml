@@ -1,0 +1,14 @@
+version: '3.2'
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - /var/lib/mysql
+  pgweb:
+    image: donnex/pgweb
+    command: -s --url postgres://postgres@postgres:/?sslmode=disable --bind=0.0.0.0
+    depends_on: 
+        - postgres
+    restart: "always"
+    ports:
+      - '8080:8081'

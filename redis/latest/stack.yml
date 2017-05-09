@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    redis:
+        image: redis
+    web:
+        image: transcranial/redmon
+        command: redmon -r redis://redis
+        ports:
+            - "4567:4567"
+
