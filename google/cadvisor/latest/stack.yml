@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+    advisor:
+        image: google/cadvisor:latest
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run
+            - /sys:/sys:ro
+            - /graph:/var/lib/docker
+        ports:
+            - "8080:8080"
