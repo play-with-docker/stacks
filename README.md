@@ -16,8 +16,7 @@ In the case of official repositories, `<name>` is not necessary. If you're submi
 make sure the default name is `stack.yml`. 
 
 When submitting new stacks it's important to find an intuitive way to showcase the example you're aiming at.
-For example, if 
-
+For example, if adding a stack for a DB, try to also add a web interface container so it's easier to play with it. 
 
 ## RFS (request for stacks)
 
