@@ -1,0 +1,8 @@
+version: '3'
+services:
+  chrome-headless-trunk:
+    image: alpeware/chrome-headless-trunk
+    volumes:
+      - /data
+    ports:
+      - "9222:9222"
