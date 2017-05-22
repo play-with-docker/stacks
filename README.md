@@ -24,12 +24,12 @@ This is a list of the stacks we would love to have here:
 
 - [ ] registry 
 - [ ] prometheus
-- [ ] jenkings
+- [x] ~~jenkings~~
 - [ ] rabbitmq
 - [ ] memcached
 - [ ] cassandra
 - [ ] traefik
-- [x] ghost
+- [x] ~~ghost~~
 - [ ] telegraf
 - [ ] drupal
 - [ ] neo4j
