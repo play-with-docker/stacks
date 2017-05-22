@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-	app:
-		image: jenkins:latest
-		ports:
-		    	- "8080:8080"
-	 	restart: always
+    app:
+        image: jenkins:latest
+        ports:
+            - "8080:8080"
+        restart: always
