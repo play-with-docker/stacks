@@ -29,7 +29,7 @@ This is a list of the stacks we would love to have here:
 - [ ] memcached
 - [ ] cassandra
 - [ ] traefik
-- [ ] ghost
+- [x] ghost
 - [ ] telegraf
 - [ ] drupal
 - [ ] neo4j
