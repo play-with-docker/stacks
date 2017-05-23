@@ -1,4 +1,4 @@
-# Docker example stacks
+tainer unless it mounts a persistent volume, i.e. where you want to store your website data# Docker example stacks
 
 This repository contains a curated list of stacks to showcase the docker images
 available in the public docker registry.
@@ -38,4 +38,5 @@ This is a list of the stacks we would love to have here:
 - [ ] zookeeper
 - [ ] etcd
 - [ ] couchdb
+- [ ] php
 - [ ] rocket chat
