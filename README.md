@@ -40,3 +40,4 @@ This is a list of the stacks we would love to have here:
 - [ ] couchdb
 - [ ] php
 - [ ] rocket chat
+- [ ] graphite-statsd
