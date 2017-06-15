@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  ucp-installer:
+    image: alpine
+    command: docker run --rm --name ucp docker/ucp:2.1.4 install --force-insecure-tcp --san *.host4.labs.play-with-docker.com --host-address $$(hostname -i) --admin-username admin --admin-password admin
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+    deploy:
+      restart_policy:
+        condition: 'none'
