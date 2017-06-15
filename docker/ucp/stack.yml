@@ -3,7 +3,7 @@ version: '3.1'
 services:
   ucp-installer:
     image: alpine
-    command: docker run --rm --name ucp -v /var/run/docker.sock:/var/run/docker.sock docker/ucp:2.1.4 install --force-insecure-tcp --san *.host4.labs.play-with-docker.com --admin-username admin --admin-password admin1234
+    command: docker run --rm --name ucp -v /var/run/docker.sock:/var/run/docker.sock docker/ucp:2.1.4 install --force-insecure-tcp --san *.${PWD_HOST_FQDN} --admin-username admin --admin-password admin1234
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker:/usr/local/bin/docker
