@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+
+#-------------------------------------------------------------------------------
+# Nginx is the webserver for the backend
+#-------------------------------------------------------------------------------
+  nginx:
+    image: janatzend/particulum-mobile-backend-nginx:latest
+    links:
+      - php
+    ports:
+      - 81:80
+    networks:
+      backend-net:
+
+#-------------------------------------------------------------------------------
+# php-fpm for calling the Zend Expressive app
+#-------------------------------------------------------------------------------
+  php:
+    image: janatzend/particulum-mobile-backend:latest
+    labels:
+      com.roguewave.particulummobile.description: "Zend Expressive Backend for Particulum Mobile app"
+      com.roguewave.particulummobile.service: "particulum-mobile-backend"
+    networks:
+      backend-net:
+        aliases:
+          - backend-entry-point
+
+#-------------------------------------------------------------------------------
+# Redis is used by the Zend Expressive app as a key value storage,
+# not for session handling
+#-------------------------------------------------------------------------------
+  redis:
+    image: redis:3.2.7-alpine
+    networks:
+      backend-net:
+
+#-------------------------------------------------------------------------------
+# Nginx container serving the static content
+#-------------------------------------------------------------------------------
+  js:
+    image: janatzend/particulum-mobile-frontend:latest
+    environment:
+      - BACKEND="'; BACKEND=window.location.origin.replace('-80.', '-81.'); var x='"
+      - SWARM_MODE=true
+      - CONTAINER_INFO="'; CONTAINER_INFO=window.location.origin.replace('-80.', '-8080.'); var x='"
+    ports:
+      - 80:80
+
+#-------------------------------------------------------------------------------
+# Visualizer container; serving Docker container information to frontend
+#-------------------------------------------------------------------------------
+  vis:
+    image: janatzend/particulum-mobile-visualizer:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  backend-net:
