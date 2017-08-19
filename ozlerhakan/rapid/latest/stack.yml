@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  portainer:
+    image: ozlerhakan/rapid:latest
+    ports:
+      - '8080:8080'
+    networks:
+      - rapid-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  rapid-net:
