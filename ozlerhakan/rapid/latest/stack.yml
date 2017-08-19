@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  portainer:
+  rapid:
     image: ozlerhakan/rapid:latest
     ports:
       - '8080:8080'
