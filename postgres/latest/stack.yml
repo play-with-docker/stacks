@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres
     volumes:
-      - /var/lib/mysql
+      - /var/lib/postgresql/data
   pgweb:
     image: donnex/pgweb
     command: -s --url postgres://postgres@postgres:/?sslmode=disable --bind=0.0.0.0
