@@ -32,7 +32,7 @@ This is a list of the stacks we would love to have here:
 - [x] ~~ghost~~
 - [ ] telegraf
 - [ ] drupal
-- [ ] neo4j
+- [x] neo4j
 - [ ] influxdb
 - [ ] crate
 - [ ] zookeeper
