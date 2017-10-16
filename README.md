@@ -1,4 +1,4 @@
-tainer unless it mounts a persistent volume, i.e. where you want to store your website data# Docker example stacks
+# Docker example stacks
 
 This repository contains a curated list of stacks to showcase the docker images
 available in the public docker registry.
