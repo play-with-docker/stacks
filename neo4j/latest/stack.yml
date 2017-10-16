@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  neo4j:
+    restart: 'always'
+    image: neo4j
+    volumes:
+      - /data
+      - /logs
+    ports:
+      - '7474:7474'
+      - '7687:7687'
