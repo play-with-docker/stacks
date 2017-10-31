@@ -23,7 +23,7 @@ For example, if adding a stack for a DB, try to also add a web interface contain
 This is a list of the stacks we would love to have here:
 
 - [x] ~~registry~~
-- [ ] prometheus
+- [x] ~~prometheus~~
 - [x] ~~jenkings~~
 - [ ] rabbitmq
 - [ ] memcached

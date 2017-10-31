@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+    app:
+        image: prom/prometheus:latest
+        ports:
+            - "80:9090"
