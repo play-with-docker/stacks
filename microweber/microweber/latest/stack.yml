@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  microweber:
+    image: microweber/microweber
+    environment:
+      - DB_USER=microweber
+      - DB_PASS=microweber
+      - DB_NAME=microweber
+      - DB_ENGINE=mysql
+      - DB_HOST=db
+      - DB_PREFIX=mw_
+    ports:
+      - "8080:80"
+    restart: always  
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: microweber
+      MYSQL_DATABASE: microweber
+      MYSQL_USER: microweber
+      MYSQL_PASSWORD: microweber
+volumes:
+  db_data:
