@@ -1,0 +1,43 @@
+#Explanation:
+#SMTP_ settings should be uncommented and configured if you want to have servicebot send emails
+#CERTIFICATES and the certificate volume should be uncommented when you get SSL certs, enter path to
+version: '2'
+services:
+  servicebot:
+    image: servicebot/servicebot
+    environment:
+#      CERTIFICATES: "./ssl/"
+      POSTGRES_DB_PORT : "5432"
+      POSTGRES_DB_HOST : "db"
+      POSTGRES_DB_USER : "servicebot_u"
+      POSTGRES_DB_PASSWORD : "secret_doggo"
+      POSTGRES_DB_NAME : "sb_db"
+#      SMTP_HOST : 'localhost'
+#      SMTP_USER : 'postmaster@localhost'
+#      SMTP_PASSWORD : 'password'
+#      SMTP_PORT : '587'
+      PORT : "3000"
+    volumes:
+      - upload-data:/usr/src/app/uploads
+      - environment-file:/usr/src/app/env
+#      - /path/to/ssl/certs/on/server:/usr/src/app/ssl
+    links:
+      - db
+    ports:
+      - "80:3000"
+      - "443:3001"
+    command: ["sh", "-c", "node /usr/src/app/bin/wait-for-it.js db 5432  && npm run-script start"]
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER : "servicebot_u"
+      POSTGRES_PASSWORD : "secret_doggo"
+      POSTGRES_DB : "sb_db"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+volumes:
+  upload-data:
+  environment-file:
+  db-data:
