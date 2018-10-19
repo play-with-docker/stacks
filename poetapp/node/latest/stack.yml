@@ -1,0 +1,72 @@
+# Source: https://github.com/poetapp/node
+
+version: '3'
+
+services:
+  mongo:
+    image: mongo:3.6
+    ports:
+      - "27017:27017"
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: pwdPass
+
+  rabbit:
+    image: rabbitmq:3
+    ports:
+      - "5671:5671"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=some_secret_cookie
+      - RABBITMQ_DEFAULT_USER=pwd
+      - RABBITMQ_DEFAULT_PASS=pwdPass
+
+  ipfs:
+    image: ipfs/go-ipfs:v0.4.17
+    ports:
+      - "8080:8080"
+      - "4001:4001"
+      - "5001:5001"
+
+  bitcoind:
+    image: ruimarinho/bitcoin-core:0.17.0
+    ports:
+      - "18443:18443"
+    command:
+      -printtoconsole
+      -server
+      -testnet=${USE_BTC_TESTNET:-0}
+      -regtest=${USE_BTC_REGTEST:-1}
+      -rpcuser=pwd
+      -rpcpassword=pwdPass
+      -rpcallowip=::/0
+      -deprecatedrpc=signrawtransaction
+
+  poet-node:
+    image: poetapp/node:latest
+    ports:
+      - "18080:18080"
+    depends_on:
+      - mongo
+      - rabbit
+      - ipfs
+      - bitcoind
+    environment:
+      - POET_SERVICE=node
+      - BITCOIN_URL=bitcoind
+      - BITCOIN_USERNAME=pwd
+      - BITCOIN_PASSWORD=pwdPass
+      - BITCOIN_NETWORK=regtest
+      - RABBITMQ_URL=amqp://pwd:pwdPass@rabbit
+      - MONGODB_URL=mongodb://mongo
+      - IPFS_URL=http://ipfs:5001
+    links:
+      - mongo
+      - rabbit
+      - ipfs
+      - bitcoind
+    command: >
+      /bin/bash -c "
+        sleep 30;
+        npm start;
+        "
