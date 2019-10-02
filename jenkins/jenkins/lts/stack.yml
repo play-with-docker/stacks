@@ -2,7 +2,7 @@ version: '3'
 
 services:
     app:
-        image: jenkins:latest
+        image: jenkins/jenkins:lts
         ports:
             - "8080:8080"
         restart: always
