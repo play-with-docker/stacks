@@ -25,7 +25,7 @@ This is a list of the stacks we would love to have here:
 - [x] ~~registry~~
 - [x] ~~prometheus~~
 - [x] ~~jenkings~~
-- [ ] rabbitmq
+- [x] ~~rabbitmq~~
 - [ ] memcached
 - [ ] cassandra
 - [ ] traefik
